@@ -111,19 +111,19 @@ class _SplashScreenState extends State<SplashScreen> {
     data = await client.getLectures();
     FetchDataProvider.speakers = data.getLectures();
 
-    try {
-      if (FetchDataProvider.user != null) {
-        await client.getMyEvents(FetchDataProvider.jwt);
-      }
-      if (FirebaseAuth.instance.currentUser == null) {
-        return await Navigator.pushNamedAndRemoveUntil(
-            context, '/google_auth', (route) => false);
-      }
-    } catch (e) {
-      debugPrint(e.toString());
-      FetchDataProvider.myEvents = [];
-    }
-    FirebaseMessaging.instance.subscribeToTopic("allNoti");
+    // try {
+    //   if (FetchDataProvider.user != null) {
+    //     await client.getMyEvents(FetchDataProvider.jwt);
+    //   }
+    //   if (FirebaseAuth.instance.currentUser == null) {
+    //     return await Navigator.pushNamedAndRemoveUntil(
+    //         context, '/google_auth', (route) => false);
+    //   }
+    // } catch (e) {
+    //   debugPrint(e.toString());
+    //   FetchDataProvider.myEvents = [];
+    // }
+    // FirebaseMessaging.instance.subscribeToTopic("allNoti");
   }
 
   @override
