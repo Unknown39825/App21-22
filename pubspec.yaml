@@ -24,7 +24,6 @@ dependencies:
   http: ^0.13.4
   url_launcher: ^6.0.17
   animated_splash_screen: ^1.1.0
-  flutter_local_notifications: ^9.1.5
   localstorage: ^4.0.0+1
   dialogflow_flutter: ^0.0.3
   auto_size_text: ^3.0.0

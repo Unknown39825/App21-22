@@ -6,37 +6,37 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:techapp/providers/local_storage_provider.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/routes.dart';
 
 // creating the android channel
-const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'technobyte', // id
-  'High Importance Notifications', // title
-  description: 'This channel is used for important notifications.',
-  importance: Importance.high,
-  playSound: true,
-);
+// const AndroidNotificationChannel channel = AndroidNotificationChannel(
+//   'technobyte', // id
+//   'High Importance Notifications', // title
+//   description: 'This channel is used for important notifications.',
+//   importance: Importance.high,
+//   playSound: true,
+// );
 
 // flutter local notication intialisation
 // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
 //     FlutterLocalNotificationsPlugin();
 
 // background handler for firebase messaging
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+//   await Firebase.initializeApp();
 
-  // save notication to local storage
-  if (message.notification != null) {
-    await NotificationsProvider.addItem(
-        message.notification.title, message.notification.body,
-        image: message.notification.android.imageUrl,
-        link: message.notification.android.link);
-  }
+//   // save notication to local storage
+//   if (message.notification != null) {
+//     await NotificationsProvider.addItem(
+//         message.notification.title, message.notification.body,
+//         image: message.notification.android.imageUrl,
+//         link: message.notification.android.link);
+//   }
 
-  debugPrint('A bg message just showed up :  ${message.messageId}');
-}
+//   debugPrint('A bg message just showed up :  ${message.messageId}');
+// }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +55,7 @@ Future<void> main() async {
   await Firebase.initializeApp();
 
   // firebase background handler
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // initial notificaton channel
   // await flutterLocalNotificationsPlugin
@@ -64,11 +64,11 @@ Future<void> main() async {
   //     ?.createNotificationChannel(channel);
 
   // background message option
-  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-    alert: true,
-    badge: true,
-    sound: true,
-  );
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true,
+  //   badge: true,
+  //   sound: true,
+  // );
 
   // subscribe to notificatinon chanel
 
