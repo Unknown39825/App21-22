@@ -1,27 +1,27 @@
-import 'dart:typed_data';
+// import 'dart:typed_data';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // ignore: import_of_legacy_library_into_null_safe
-import 'package:techapp/main.dart';
+// import 'package:techapp/main.dart';
 import 'package:techapp/providers/fetch_data_provider.dart';
 import 'package:techapp/providers/local_storage_provider.dart';
 import 'package:techapp/retrofit/api_client.dart';
 import 'package:techapp/screens/components/style.dart';
 import 'package:techapp/screens/pages/error_page.dart';
 import 'package:techapp/screens/pages/navigation.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-Future<Uint8List> _getByteArrayFromUrl(String url) async {
-  final http.Response response = await http.get(Uri.parse(url));
-  return response.bodyBytes;
-}
+// Future<Uint8List> _getByteArrayFromUrl(String url) async {
+//   final http.Response response = await http.get(Uri.parse(url));
+//   return response.bodyBytes;
+// }
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -36,66 +36,66 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     // forground notification
-    FirebaseMessaging.onMessage.listen(
-      (RemoteMessage message) async {
-        debugPrint("message when app is in foreground");
-        RemoteNotification? notification = message.notification;
-        AndroidNotification? android = message.notification?.android;
+    // FirebaseMessaging.onMessage.listen(
+    //   (RemoteMessage message) async {
+    //     debugPrint("message when app is in foreground");
+    //     RemoteNotification? notification = message.notification;
+    //     AndroidNotification? android = message.notification?.android;
 
-        if (notification != null) {
-          await NotificationsProvider.addItem(
-              message.notification!.title!, message.notification!.body!,
-              image: message.notification!.android!.imageUrl ?? '',
-              link: message.notification!.android!.link ?? '');
-        }
-        if (notification != null && android != null) {
-          // ignore: avoid_init_to_null
-          ByteArrayAndroidBitmap? _bigPicture = null;
-          if (android.imageUrl != null) {
-            _bigPicture = ByteArrayAndroidBitmap(
-                await _getByteArrayFromUrl(android.imageUrl!));
-          }
+    //     if (notification != null) {
+    //       await NotificationsProvider.addItem(
+    //           message.notification!.title!, message.notification!.body!,
+    //           image: message.notification!.android!.imageUrl ?? '',
+    //           link: message.notification!.android!.link ?? '');
+    //     }
+    //     if (notification != null && android != null) {
+    //       // ignore: avoid_init_to_null
+    //       ByteArrayAndroidBitmap? _bigPicture = null;
+    //       if (android.imageUrl != null) {
+    //         _bigPicture = ByteArrayAndroidBitmap(
+    //             await _getByteArrayFromUrl(android.imageUrl!));
+    //       }
 
-          // if image url present then donwload image
-          var _styleinformation = android.imageUrl != null
-              ? BigPictureStyleInformation(
-                  _bigPicture!,
-                  largeIcon: _bigPicture,
-                  contentTitle: notification.title,
-                  summaryText: notification.body,
-                )
-              : BigTextStyleInformation(
-                  notification.body ?? '',
-                  contentTitle: notification.title,
-                );
-          flutterLocalNotificationsPlugin.show(
-            notification.hashCode,
-            "Hello $user!!! " + notification.title!,
-            "Hello $user!!! " + notification.body!,
-            NotificationDetails(
-              android: AndroidNotificationDetails(channel.id, channel.name,
-                  color: Colors.blue,
-                  playSound: true,
-                  icon: '@mipmap/ic_launcher',
-                  styleInformation: _styleinformation),
-            ),
-          );
-        }
-      },
-    );
+    //       // if image url present then donwload image
+    //       var _styleinformation = android.imageUrl != null
+    //           ? BigPictureStyleInformation(
+    //               _bigPicture!,
+    //               largeIcon: _bigPicture,
+    //               contentTitle: notification.title,
+    //               summaryText: notification.body,
+    //             )
+    //           : BigTextStyleInformation(
+    //               notification.body ?? '',
+    //               contentTitle: notification.title,
+    //             );
+    //       flutterLocalNotificationsPlugin.show(
+    //         notification.hashCode,
+    //         "Hello $user!!! " + notification.title!,
+    //         "Hello $user!!! " + notification.body!,
+    //         NotificationDetails(
+    //           android: AndroidNotificationDetails(channel.id, channel.name,
+    //               color: Colors.blue,
+    //               playSound: true,
+    //               icon: '@mipmap/ic_launcher',
+    //               styleInformation: _styleinformation),
+    //         ),
+    //       );
+    //     }
+    //   },
+    // );
 
-    // one message background open event
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
-      debugPrint('A new onMessageOpenedApp event was published!');
-      // ignore: unnecessary_null_comparison
-      if (message != null && message.notification != null) {
-        await NotificationsProvider.addItem(
-            message.notification!.title ?? '', message.notification!.body ?? '',
-            image: message.notification!.android?.imageUrl ?? '',
-            link: message.notification!.android?.link ?? '');
-      }
-      Navigator.pushNamed(context, "/notification");
-    });
+    // // one message background open event
+    // FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+    //   debugPrint('A new onMessageOpenedApp event was published!');
+    //   // ignore: unnecessary_null_comparison
+    //   if (message != null && message.notification != null) {
+    //     await NotificationsProvider.addItem(
+    //         message.notification!.title ?? '', message.notification!.body ?? '',
+    //         image: message.notification!.android?.imageUrl ?? '',
+    //         link: message.notification!.android?.link ?? '');
+    //   }
+    //   Navigator.pushNamed(context, "/notification");
+    // });
   }
 
   Future<dynamic> loadDataDuringSplash(BuildContext context) async {

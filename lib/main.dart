@@ -20,8 +20,8 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 );
 
 // flutter local notication intialisation
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//     FlutterLocalNotificationsPlugin();
 
 // background handler for firebase messaging
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -58,10 +58,10 @@ Future<void> main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   // initial notificaton channel
-  await flutterLocalNotificationsPlugin
-      .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
-      ?.createNotificationChannel(channel);
+  // await flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<
+  //         AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.createNotificationChannel(channel);
 
   // background message option
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
